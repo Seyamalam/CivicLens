@@ -1,0 +1,285 @@
+{
+  "app": {
+    "name": "সিভিকলেন্স",
+    "tagline": "আপনার পকেটে স্বচ্ছতা",
+    "description": "স্বচ্ছ শাসনের জন্য একীভূত দুর্নীতিবিরোধী প্ল্যাটফর্ম"
+  },
+  "common": {
+    "loading": "লোড হচ্ছে...",
+    "error": "ত্রুটি",
+    "success": "সফল",
+    "cancel": "বাতিল",
+    "save": "সংরক্ষণ",
+    "edit": "সম্পাদনা",
+    "delete": "মুছুন",
+    "search": "অনুসন্ধান",
+    "filter": "ফিল্টার",
+    "submit": "জমা দিন",
+    "close": "বন্ধ",
+    "back": "পিছনে",
+    "next": "পরবর্তী",
+    "previous": "পূর্ববর্তী",
+    "view": "দেখুন",
+    "download": "ডাউনলোড",
+    "export": "রপ্তানি",
+    "anonymous": "বেনামী",
+    "verified": "যাচাইকৃত",
+    "pending": "অপেক্ষমাণ",
+    "date": "তারিখ",
+    "amount": "পরিমাণ",
+    "status": "অবস্থা",
+    "location": "অবস্থান",
+    "details": "বিস্তারিত"
+  },
+  "navigation": {
+    "home": "হোম",
+    "procurement": "সংগ্রহ",
+    "services": "সেবা",
+    "rti": "তথ্য অধিকার",
+    "budgets": "বাজেট",
+    "profile": "প্রোফাইল",
+    "dashboard": "ড্যাশবোর্ড",
+    "settings": "সেটিংস"
+  },
+  "modules": {
+    "procureLens": {
+      "name": "প্রোকিউরলেন্স",
+      "description": "সংগ্রহ ঝুঁকি শনাক্তকরণ",
+      "tender": "দরপত্র",
+      "tenders": "দরপত্রসমূহ",
+      "supplier": "সরবরাহকারী",
+      "suppliers": "সরবরাহকারীগণ",
+      "riskScore": "ঝুঁকি স্কোর",
+      "highRisk": "উচ্চ ঝুঁকি",
+      "mediumRisk": "মাঝারি ঝুঁকি",
+      "lowRisk": "নিম্ন ঝুঁকি",
+      "flags": {
+        "singleBidder": "একক দরদাতা",
+        "shortWindow": "সংক্ষিপ্ত দরপত্রের সময়",
+        "repeatWinner": "পুনরাবৃত্ত বিজয়ী",
+        "highMargin": "উচ্চ মার্জিন",
+        "quickAward": "দ্রুত পুরস্কার",
+        "noCompetition": "কোন প্রতিযোগিতা নেই"
+      },
+      "fields": {
+        "buyer": "ক্রেতা",
+        "sector": "সেক্টর",
+        "method": "পদ্ধতি",
+        "publishDate": "প্রকাশের তারিখ",
+        "closeDate": "বন্ধের তারিখ",
+        "awardDate": "পুরস্কারের তারিখ",
+        "estimatedAmount": "আনুমানিক পরিমাণ",
+        "awardAmount": "পুরস্কারের পরিমাণ",
+        "biddersCount": "দরদাতার সংখ্যা",
+        "winner": "বিজয়ী"
+      }
+    },
+    "feeCheck": {
+      "name": "ফি চেক",
+      "description": "সেবা অতিরিক্ত মূল্য শনাক্তকরণ",
+      "service": "সেবা",
+      "services": "সেবাসমূহ",
+      "officialFee": "সরকারি ফি",
+      "reportedFee": "রিপোর্টকৃত ফি",
+      "overcharge": "অতিরিক্ত চার্জ",
+      "overchargePercentage": "অতিরিক্ত চার্জ %",
+      "reportOvercharge": "অতিরিক্ত চার্জ রিপোর্ট করুন",
+      "serviceCategory": "সেবার ধরন",
+      "categories": {
+        "civilDocuments": "নাগরিক নথিপত্র",
+        "businessPermits": "ব্যবসায়িক অনুমতি",
+        "landServices": "ভূমি সেবা",
+        "taxServices": "কর সেবা",
+        "utilityServices": "ইউটিলিটি সেবা",
+        "educationServices": "শিক্ষা সেবা"
+      },
+      "fields": {
+        "officeName": "অফিসের নাম",
+        "timeline": "সময়সীমা",
+        "requirements": "প্রয়োজনীয়তা",
+        "legalReference": "আইনি রেফারেন্স"
+      }
+    },
+    "rtiCopilot": {
+      "name": "আরটিআই সহায়ক",
+      "description": "তথ্য অধিকার সহায়ক",
+      "request": "অনুরোধ",
+      "requests": "অনুরোধসমূহ",
+      "agency": "সংস্থা",
+      "topic": "বিষয়",
+      "deadline": "সময়সীমা",
+      "response": "উত্তর",
+      "outcome": "ফলাফল",
+      "status": {
+        "draft": "খসড়া",
+        "submitted": "জমা দেওয়া",
+        "underReview": "পর্যালোচনাধীন",
+        "responded": "উত্তর দেওয়া",
+        "appealed": "আপিল",
+        "overdue": "বিলম্বিত",
+        "rejected": "প্রত্যাখ্যাত"
+      },
+      "actions": {
+        "createRequest": "আরটিআই অনুরোধ তৈরি করুন",
+        "submitRequest": "অনুরোধ জমা দিন",
+        "trackRequest": "অনুরোধ ট্র্যাক করুন",
+        "publishOutcome": "ফলাফল প্রকাশ করুন"
+      }
+    },
+    "fairLine": {
+      "name": "ন্যায়নীতি",
+      "description": "ঘুষ অনুরোধ লগার",
+      "log": "লগ",
+      "logs": "লগসমূহ",
+      "bribe": "ঘুষ",
+      "solicitation": "অনুরোধ",
+      "office": "অফিস",
+      "severity": {
+        "low": "নিম্ন",
+        "medium": "মাঝারি",
+        "high": "উচ্চ",
+        "critical": "গুরুতর"
+      },
+      "actions": {
+        "logBribe": "ঘুষ লগ করুন",
+        "recordAudio": "অডিও রেকর্ড করুন",
+        "addLocation": "অবস্থান যোগ করুন",
+        "exportEvidence": "প্রমাণ রপ্তানি করুন",
+        "reportAuthorities": "কর্তৃপক্ষকে রিপোর্ট করুন"
+      },
+      "fields": {
+        "timestamp": "সময়স্ট্যাম্প",
+        "audioNote": "অডিও নোট",
+        "textNote": "টেক্সট নোট",
+        "hash": "হ্যাশ",
+        "previousHash": "পূর্ববর্তী হ্যাশ"
+      }
+    },
+    "permitPath": {
+      "name": "অনুমতি পথ",
+      "description": "বিলম্ব শনাক্তকরণ ব্যবস্থা",
+      "permit": "অনুমতি",
+      "permits": "অনুমতিসমূহ",
+      "application": "আবেদন",
+      "expectedDays": "প্রত্যাশিত দিন",
+      "actualDays": "প্রকৃত দিন",
+      "delayed": "বিলম্বিত",
+      "onTime": "সময়মতো",
+      "status": {
+        "applied": "আবেদনকৃত",
+        "underReview": "পর্যালোচনাধীন",
+        "additionalDocs": "অতিরিক্ত নথি প্রয়োজন",
+        "approved": "অনুমোদিত",
+        "rejected": "প্রত্যাখ্যাত",
+        "escalated": "উর্ধ্বতন পর্যায়ে"
+      },
+      "actions": {
+        "trackPermit": "অনুমতি ট্র্যাক করুন",
+        "updateStatus": "স্ট্যাটাস আপডেট করুন",
+        "generateEscalation": "এসকেলেশন চিঠি তৈরি করুন"
+      }
+    },
+    "wardWallet": {
+      "name": "ওয়ার্ড ওয়ালেট",
+      "description": "বাজেট স্বচ্ছতা",
+      "project": "প্রকল্প",
+      "projects": "প্রকল্পসমূহ",
+      "budget": "বাজেট",
+      "planned": "পরিকল্পিত",
+      "actual": "প্রকৃত",
+      "variance": "বৈচিত্র্য",
+      "unitCost": "একক খরচ",
+      "photo": "ছবি",
+      "photos": "ছবিসমূহ",
+      "verification": "যাচাইকরণ",
+      "contractor": "ঠিকাদার",
+      "status": {
+        "planned": "পরিকল্পিত",
+        "inProgress": "চলমান",
+        "completed": "সম্পন্ন",
+        "delayed": "বিলম্বিত",
+        "cancelled": "বাতিল"
+      },
+      "categories": {
+        "infrastructure": "অবকাঠামো",
+        "education": "শিক্ষা",
+        "health": "স্বাস্থ্য",
+        "social": "সামাজিক"
+      },
+      "actions": {
+        "addPhoto": "ছবি যোগ করুন",
+        "verifyPhoto": "ছবি যাচাই করুন",
+        "compareUnitCost": "একক খরচ তুলনা করুন"
+      }
+    }
+  },
+  "forms": {
+    "validation": {
+      "required": "এই ক্ষেত্রটি আবশ্যক",
+      "email": "একটি বৈধ ইমেইল লিখুন",
+      "phone": "একটি বৈধ ফোন নম্বর লিখুন",
+      "number": "একটি বৈধ সংখ্যা লিখুন",
+      "minLength": "ন্যূনতম {{count}} অক্ষর প্রয়োজন",
+      "maxLength": "সর্বোচ্চ {{count}} অক্ষর অনুমোদিত"
+    },
+    "labels": {
+      "name": "নাম",
+      "email": "ইমেইল",
+      "phone": "ফোন",
+      "password": "পাসওয়ার্ড",
+      "confirmPassword": "পাসওয়ার্ড নিশ্চিত করুন",
+      "description": "বর্ণনা",
+      "note": "নোট",
+      "comment": "মন্তব্য"
+    }
+  },
+  "auth": {
+    "login": "লগইন",
+    "logout": "লগআউট",
+    "register": "নিবন্ধন",
+    "forgotPassword": "পাসওয়ার্ড ভুলে গেছেন",
+    "resetPassword": "পাসওয়ার্ড পুনরায় সেট করুন",
+    "welcomeBack": "ফিরে স্বাগতম",
+    "createAccount": "অ্যাকাউন্ট তৈরি করুন",
+    "anonymousLogin": "বেনামীভাবে অব্যাহত রাখুন",
+    "magicLink": "ম্যাজিক লিংক পাঠান",
+    "emailOtp": "ইমেইল ওটিপি",
+    "verifyOtp": "ওটিপি যাচাই করুন"
+  },
+  "dashboard": {
+    "overview": "সংক্ষিপ্ত বিবরণ",
+    "statistics": "পরিসংখ্যান",
+    "recentActivity": "সাম্প্রতিক কার্যকলাপ",
+    "totalReports": "মোট রিপোর্ট",
+    "highRiskTenders": "উচ্চ ঝুঁকিপূর্ণ দরপত্র",
+    "overchargeRate": "অতিরিক্ত চার্জের হার",
+    "responseRate": "প্রতিক্রিয়ার হার",
+    "delayRate": "বিলম্বের হার",
+    "budgetVariance": "বাজেট বৈচিত্র্য"
+  },
+  "export": {
+    "pdf": "পিডিএফ হিসেবে রপ্তানি",
+    "csv": "সিএসভি হিসেবে রপ্তানি",
+    "json": "জেসন হিসেবে রপ্তানি",
+    "riskBrief": "ঝুঁকি সংক্ষিপ্ত বিবরণ",
+    "evidenceBundle": "প্রমাণ বান্ডল",
+    "dataset": "ডেটাসেট"
+  },
+  "notifications": {
+    "title": "বিজ্ঞপ্তি",
+    "markAllRead": "সব পড়া হিসেবে চিহ্নিত করুন",
+    "rtiDeadline": "আরটিআই সময়সীমা কাছে",
+    "permitDelay": "অনুমতি প্রক্রিয়া বিলম্বিত",
+    "systemAlert": "সিস্টেম সতর্কতা",
+    "newResponse": "নতুন প্রতিক্রিয়া পেয়েছেন"
+  },
+  "settings": {
+    "language": "ভাষা",
+    "notifications": "বিজ্ঞপ্তি",
+    "privacy": "গোপনীয়তা",
+    "account": "অ্যাকাউন্ট",
+    "about": "সম্পর্কে",
+    "support": "সহায়তা",
+    "version": "সংস্করণ"
+  }
+}

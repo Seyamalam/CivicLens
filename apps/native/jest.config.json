@@ -1,0 +1,38 @@
+{
+  "preset": "jest-expo",
+  "setupFilesAfterEnv": [
+    "<rootDir>/__tests__/setup.ts",
+    "@testing-library/jest-native/extend-expect"
+  ],
+  "testMatch": [
+    "**/__tests__/**/*.(test|spec).(js|jsx|ts|tsx)"
+  ],
+  "collectCoverageFrom": [
+    "app/**/*.{js,jsx,ts,tsx}",
+    "lib/**/*.{js,jsx,ts,tsx}",
+    "components/**/*.{js,jsx,ts,tsx}",
+    "!**/*.d.ts",
+    "!**/node_modules/**",
+    "!**/__tests__/**"
+  ],
+  "coverageReporters": [
+    "text",
+    "lcov",
+    "html"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "branches": 70,
+      "functions": 70,
+      "lines": 70,
+      "statements": 70
+    }
+  },
+  "moduleNameMapping": {
+    "^@/(.*)$": "<rootDir>/$1"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(jest-)?react-native|@react-native|@expo|expo-|@expo-google-fonts|react-clone-referenced-element|@react-native-community|expo-font|expo-asset|expo-constants|expo-file-system|expo-permissions|unimodules|sentry-expo|native-base|react-navigation|@sentry|@react-navigation)"
+  ],
+  "testEnvironment": "jsdom"
+}

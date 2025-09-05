@@ -1,0 +1,285 @@
+{
+  "app": {
+    "name": "CivicLens",
+    "tagline": "Transparency in your pocket",
+    "description": "Unified anti-corruption platform for transparent governance"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "submit": "Submit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "view": "View",
+    "download": "Download",
+    "export": "Export",
+    "anonymous": "Anonymous",
+    "verified": "Verified",
+    "pending": "Pending",
+    "date": "Date",
+    "amount": "Amount",
+    "status": "Status",
+    "location": "Location",
+    "details": "Details"
+  },
+  "navigation": {
+    "home": "Home",
+    "procurement": "Procurement",
+    "services": "Services",
+    "rti": "RTI",
+    "budgets": "Budgets",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  },
+  "modules": {
+    "procureLens": {
+      "name": "ProcureLens",
+      "description": "Procurement Risk Detection",
+      "tender": "Tender",
+      "tenders": "Tenders",
+      "supplier": "Supplier",
+      "suppliers": "Suppliers",
+      "riskScore": "Risk Score",
+      "highRisk": "High Risk",
+      "mediumRisk": "Medium Risk",
+      "lowRisk": "Low Risk",
+      "flags": {
+        "singleBidder": "Single Bidder",
+        "shortWindow": "Short Bidding Window",
+        "repeatWinner": "Repeat Winner",
+        "highMargin": "High Margin",
+        "quickAward": "Quick Award",
+        "noCompetition": "No Competition"
+      },
+      "fields": {
+        "buyer": "Buyer",
+        "sector": "Sector",
+        "method": "Method",
+        "publishDate": "Publish Date",
+        "closeDate": "Close Date",
+        "awardDate": "Award Date",
+        "estimatedAmount": "Estimated Amount",
+        "awardAmount": "Award Amount",
+        "biddersCount": "Number of Bidders",
+        "winner": "Winner"
+      }
+    },
+    "feeCheck": {
+      "name": "FeeCheck",
+      "description": "Service Overcharge Detection",
+      "service": "Service",
+      "services": "Services",
+      "officialFee": "Official Fee",
+      "reportedFee": "Reported Fee",
+      "overcharge": "Overcharge",
+      "overchargePercentage": "Overcharge %",
+      "reportOvercharge": "Report Overcharge",
+      "serviceCategory": "Service Category",
+      "categories": {
+        "civilDocuments": "Civil Documents",
+        "businessPermits": "Business Permits",
+        "landServices": "Land Services",
+        "taxServices": "Tax Services",
+        "utilityServices": "Utility Services",
+        "educationServices": "Education Services"
+      },
+      "fields": {
+        "officeName": "Office Name",
+        "timeline": "Timeline",
+        "requirements": "Requirements",
+        "legalReference": "Legal Reference"
+      }
+    },
+    "rtiCopilot": {
+      "name": "RTI Copilot",
+      "description": "Right-to-Information Assistant",
+      "request": "Request",
+      "requests": "Requests",
+      "agency": "Agency",
+      "topic": "Topic",
+      "deadline": "Deadline",
+      "response": "Response",
+      "outcome": "Outcome",
+      "status": {
+        "draft": "Draft",
+        "submitted": "Submitted",
+        "underReview": "Under Review",
+        "responded": "Responded",
+        "appealed": "Appealed",
+        "overdue": "Overdue",
+        "rejected": "Rejected"
+      },
+      "actions": {
+        "createRequest": "Create RTI Request",
+        "submitRequest": "Submit Request",
+        "trackRequest": "Track Request",
+        "publishOutcome": "Publish Outcome"
+      }
+    },
+    "fairLine": {
+      "name": "FairLine",
+      "description": "Bribe Solicitation Logger",
+      "log": "Log",
+      "logs": "Logs",
+      "bribe": "Bribe",
+      "solicitation": "Solicitation",
+      "office": "Office",
+      "severity": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "critical": "Critical"
+      },
+      "actions": {
+        "logBribe": "Log Bribe",
+        "recordAudio": "Record Audio",
+        "addLocation": "Add Location",
+        "exportEvidence": "Export Evidence",
+        "reportAuthorities": "Report to Authorities"
+      },
+      "fields": {
+        "timestamp": "Timestamp",
+        "audioNote": "Audio Note",
+        "textNote": "Text Note",
+        "hash": "Hash",
+        "previousHash": "Previous Hash"
+      }
+    },
+    "permitPath": {
+      "name": "PermitPath",
+      "description": "Delay Detection System",
+      "permit": "Permit",
+      "permits": "Permits",
+      "application": "Application",
+      "expectedDays": "Expected Days",
+      "actualDays": "Actual Days",
+      "delayed": "Delayed",
+      "onTime": "On Time",
+      "status": {
+        "applied": "Applied",
+        "underReview": "Under Review",
+        "additionalDocs": "Additional Documents Required",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "escalated": "Escalated"
+      },
+      "actions": {
+        "trackPermit": "Track Permit",
+        "updateStatus": "Update Status",
+        "generateEscalation": "Generate Escalation Letter"
+      }
+    },
+    "wardWallet": {
+      "name": "WardWallet",
+      "description": "Budget Transparency",
+      "project": "Project",
+      "projects": "Projects",
+      "budget": "Budget",
+      "planned": "Planned",
+      "actual": "Actual",
+      "variance": "Variance",
+      "unitCost": "Unit Cost",
+      "photo": "Photo",
+      "photos": "Photos",
+      "verification": "Verification",
+      "contractor": "Contractor",
+      "status": {
+        "planned": "Planned",
+        "inProgress": "In Progress",
+        "completed": "Completed",
+        "delayed": "Delayed",
+        "cancelled": "Cancelled"
+      },
+      "categories": {
+        "infrastructure": "Infrastructure",
+        "education": "Education",
+        "health": "Health",
+        "social": "Social"
+      },
+      "actions": {
+        "addPhoto": "Add Photo",
+        "verifyPhoto": "Verify Photo",
+        "compareUnitCost": "Compare Unit Cost"
+      }
+    }
+  },
+  "forms": {
+    "validation": {
+      "required": "This field is required",
+      "email": "Please enter a valid email",
+      "phone": "Please enter a valid phone number",
+      "number": "Please enter a valid number",
+      "minLength": "Minimum {{count}} characters required",
+      "maxLength": "Maximum {{count}} characters allowed"
+    },
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "description": "Description",
+      "note": "Note",
+      "comment": "Comment"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "forgotPassword": "Forgot Password",
+    "resetPassword": "Reset Password",
+    "welcomeBack": "Welcome back",
+    "createAccount": "Create Account",
+    "anonymousLogin": "Continue Anonymously",
+    "magicLink": "Send Magic Link",
+    "emailOtp": "Email OTP",
+    "verifyOtp": "Verify OTP"
+  },
+  "dashboard": {
+    "overview": "Overview",
+    "statistics": "Statistics",
+    "recentActivity": "Recent Activity",
+    "totalReports": "Total Reports",
+    "highRiskTenders": "High Risk Tenders",
+    "overchargeRate": "Overcharge Rate",
+    "responseRate": "Response Rate",
+    "delayRate": "Delay Rate",
+    "budgetVariance": "Budget Variance"
+  },
+  "export": {
+    "pdf": "Export as PDF",
+    "csv": "Export as CSV",
+    "json": "Export as JSON",
+    "riskBrief": "Risk Brief",
+    "evidenceBundle": "Evidence Bundle",
+    "dataset": "Dataset"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark All as Read",
+    "rtiDeadline": "RTI Deadline Approaching",
+    "permitDelay": "Permit Processing Delayed",
+    "systemAlert": "System Alert",
+    "newResponse": "New Response Received"
+  },
+  "settings": {
+    "language": "Language",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "account": "Account",
+    "about": "About",
+    "support": "Support",
+    "version": "Version"
+  }
+}

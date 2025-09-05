@@ -1,0 +1,193 @@
+{
+  "app": {
+    "name": "CivicLens",
+    "tagline": "Transparency in your pocket",
+    "description": "Unified anti-corruption platform for transparent governance"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "submit": "Submit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "view": "View",
+    "download": "Download",
+    "export": "Export",
+    "anonymous": "Anonymous",
+    "verified": "Verified",
+    "pending": "Pending",
+    "date": "Date",
+    "amount": "Amount",
+    "status": "Status",
+    "location": "Location",
+    "details": "Details",
+    "retry": "Retry",
+    "refresh": "Refresh"
+  },
+  "navigation": {
+    "home": "Home",
+    "procurement": "Procurement",
+    "services": "Services",
+    "rti": "RTI",
+    "budgets": "Budgets",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "tabs": {
+    "procurement": "🏛 Procurement",
+    "services": "💵 Services",
+    "rti": "📜 RTI",
+    "budgets": "📊 Budgets",
+    "profile": "👤 Profile"
+  },
+  "modules": {
+    "procureLens": {
+      "name": "ProcureLens",
+      "description": "Procurement Risk Detection",
+      "searchPlaceholder": "Search tenders...",
+      "noTenders": "No tenders found",
+      "riskScore": "Risk Score",
+      "viewDetails": "View Details",
+      "exportBrief": "Export Risk Brief",
+      "totalTenders": "Total Tenders",
+      "highRisk": "High Risk",
+      "mediumRisk": "Medium Risk",
+      "lowRisk": "Low Risk",
+      "allRisk": "All Risk",
+      "filterByRisk": "Filter by Risk Level",
+      "filterByType": "Filter by Type",
+      "sortBy": "Sort By",
+      "sortByDate": "Date",
+      "sortByAmount": "Amount",
+      "sortByRisk": "Risk Score",
+      "sortByDeadline": "Deadline"
+    },
+    "feeCheck": {
+      "name": "FeeCheck",
+      "description": "Service Overcharge Detection",
+      "searchServices": "Search services...",
+      "reportOvercharge": "Report Overcharge",
+      "officialFee": "Official Fee",
+      "yourFee": "Fee You Paid",
+      "calculateOvercharge": "Calculate Overcharge"
+    },
+    "rtiCopilot": {
+      "name": "RTI Copilot",
+      "description": "Right-to-Information Assistant",
+      "createRequest": "Create New Request",
+      "myRequests": "My Requests",
+      "templates": "Templates",
+      "deadlineTracker": "Deadline Tracker"
+    },
+    "fairLine": {
+      "name": "FairLine", 
+      "description": "Bribe Solicitation Logger",
+      "quickLog": "Quick Log",
+      "addAudio": "Add Audio Note",
+      "addLocation": "Add Location",
+      "logBribe": "Log Bribe Incident"
+    },
+    "permitPath": {
+      "name": "PermitPath",
+      "description": "Delay Detection System",
+      "trackPermit": "Track Permit",
+      "addApplication": "Add Application",
+      "generateLetter": "Generate Escalation Letter"
+    },
+    "wardWallet": {
+      "name": "WardWallet", 
+      "description": "Budget Transparency",
+      "exploreProjects": "Explore Projects",
+      "addPhoto": "Add Verification Photo",
+      "compareUnits": "Compare Unit Costs"
+    }
+  },
+  "forms": {
+    "validation": {
+      "required": "This field is required",
+      "email": "Please enter a valid email",
+      "phone": "Please enter a valid phone number",
+      "number": "Please enter a valid number",
+      "minLength": "Minimum {{count}} characters required",
+      "maxLength": "Maximum {{count}} characters allowed"
+    },
+    "placeholders": {
+      "searchHere": "Search here...",
+      "enterAmount": "Enter amount...",
+      "enterNote": "Enter note...",
+      "selectOffice": "Select office...",
+      "selectService": "Select service..."
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "anonymousMode": "Anonymous Mode",
+    "continueAnonymously": "Continue Anonymously",
+    "switchToAnonymous": "Switch to Anonymous",
+    "createAccount": "Create Account"
+  },
+  "permissions": {
+    "camera": "Camera Permission",
+    "cameraDescription": "We need camera access to take verification photos",
+    "location": "Location Permission", 
+    "locationDescription": "We need location access to track incidents geographically",
+    "microphone": "Microphone Permission",
+    "microphoneDescription": "We need microphone access to record audio notes",
+    "grant": "Grant Permission",
+    "deny": "Deny",
+    "openSettings": "Open Settings"
+  },
+  "offline": {
+    "title": "You're Offline",
+    "description": "Some features may not work without internet connection",
+    "syncPending": "{{count}} items waiting to sync",
+    "syncNow": "Sync Now",
+    "workOffline": "Continue Working Offline",
+    "syncing": "Syncing...",
+    "synced": "All data synced",
+    "syncFailed": "{{count}} items failed to sync",
+    "networkStatus": "Network Status",
+    "online": "Online",
+    "offline": "Offline",
+    "pendingSync": "Pending Items",
+    "failedSync": "Failed Items",
+    "lastSync": "Last Sync",
+    "retryFailed": "Retry Failed",
+    "clearFailed": "Clear Failed"
+  },
+  "language": {
+    "english": "English",
+    "bangla": "বাংলা",
+    "changeLanguage": "Change Language",
+    "languageChanged": "Language changed successfully"
+  },
+  "profile": {
+    "anonymousUser": "Anonymous User",
+    "anonymousUserDesc": "You are browsing anonymously",
+    "signIn": "Sign In",
+    "accountSettings": "Account Settings",
+    "accountSettingsDesc": "Manage your account preferences",
+    "notifications": "Notifications",
+    "notificationsDesc": "Configure alert preferences",
+    "privacy": "Privacy & Security",
+    "privacyDesc": "Control your data and privacy settings",
+    "about": "About CivicLens",
+    "aboutDesc": "Learn more about our mission",
+    "appName": "CivicLens",
+    "madeWith": "Made with",
+    "forTransparency": "for transparency",
+    "logout": "Logout",
+    "logoutConfirm": "Are you sure you want to logout?"
+  }
+}
