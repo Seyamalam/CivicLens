@@ -1,13 +1,13 @@
-import { ConvexReactClient } from 'convex/react';
-import { getDatabase, TABLES } from './database';
-import * as Network from 'expo-network';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import NetInfo from "@react-native-community/netinfo";
+import type { ConvexReactClient } from "convex/react";
+import { getDatabase, TABLES } from "./database";
 
 export interface SyncQueueItem {
   id?: number;
   table_name: string;
   record_id: string;
-  operation: 'INSERT' | 'UPDATE' | 'DELETE';
+  operation: "INSERT" | "UPDATE" | "DELETE";
   data: string;
   created_at?: string;
   attempts?: number;
@@ -24,8 +24,8 @@ export interface SyncResult {
 
 class SyncService {
   private convex: ConvexReactClient | null = null;
-  private isOnline: boolean = false;
-  private syncInProgress: boolean = false;
+  private isOnline = false;
+  private syncInProgress = false;
   private readonly MAX_RETRY_ATTEMPTS = 3;
   private readonly RETRY_DELAY_MS = 5000;
 
@@ -39,7 +39,7 @@ class SyncService {
   async initialize(convexClient: ConvexReactClient) {
     this.convex = convexClient;
     await this.initializeNetworkListener();
-    console.log('✅ SyncService initialized');
+    console.log("✅ SyncService initialized");
   }
 
   /**
@@ -48,28 +48,30 @@ class SyncService {
   private async initializeNetworkListener() {
     // Check initial network status
     try {
-      const networkState = await Network.getNetworkStateAsync();
+      const networkState = await NetInfo.fetch();
       this.isOnline = networkState.isConnected ?? false;
-      console.log(`🌐 Initial network status: ${this.isOnline ? 'Online' : 'Offline'}`);
+      console.log(
+        `🌐 Initial network status: ${this.isOnline ? "Online" : "Offline"}`
+      );
     } catch (error) {
-      console.warn('Failed to get initial network status:', error);
+      console.warn("Failed to get initial network status:", error);
       this.isOnline = false;
     }
-    
+
     // Set up periodic network checks since Expo doesn't have real-time network listeners
     setInterval(async () => {
       try {
-        const networkState = await Network.getNetworkStateAsync();
+        const networkState = await NetInfo.fetch();
         const wasOffline = !this.isOnline;
         this.isOnline = networkState.isConnected ?? false;
-        
+
         // Auto-sync when coming back online
         if (wasOffline && this.isOnline) {
-          console.log('🌐 Network restored, triggering auto-sync');
+          console.log("🌐 Network restored, triggering auto-sync");
           this.autoSync();
         }
       } catch (error) {
-        console.warn('Failed to check network status:', error);
+        console.warn("Failed to check network status:", error);
       }
     }, 5000); // Check every 5 seconds
   }
@@ -80,25 +82,27 @@ class SyncService {
   async addToSyncQueue(
     tableName: string,
     recordId: string,
-    operation: 'INSERT' | 'UPDATE' | 'DELETE',
+    operation: "INSERT" | "UPDATE" | "DELETE",
     data: any
   ): Promise<void> {
     const db = getDatabase();
-    
+
     try {
       await db.runAsync(
         `INSERT INTO ${TABLES.SYNC_QUEUE} (table_name, record_id, operation, data) VALUES (?, ?, ?, ?)`,
         [tableName, recordId, operation, JSON.stringify(data)]
       );
-      
-      console.log(`📝 Added to sync queue: ${operation} ${tableName}/${recordId}`);
-      
+
+      console.log(
+        `📝 Added to sync queue: ${operation} ${tableName}/${recordId}`
+      );
+
       // Try immediate sync if online
       if (this.isOnline) {
         this.autoSync();
       }
     } catch (error) {
-      console.error('❌ Failed to add to sync queue:', error);
+      console.error("❌ Failed to add to sync queue:", error);
       throw error;
     }
   }
@@ -108,16 +112,16 @@ class SyncService {
    */
   async getPendingSyncItems(): Promise<SyncQueueItem[]> {
     const db = getDatabase();
-    
+
     try {
       const items = await db.getAllAsync<SyncQueueItem>(
         `SELECT * FROM ${TABLES.SYNC_QUEUE} WHERE attempts < ? ORDER BY created_at ASC`,
         [this.MAX_RETRY_ATTEMPTS]
       );
-      
+
       return items;
     } catch (error) {
-      console.error('❌ Failed to get pending sync items:', error);
+      console.error("❌ Failed to get pending sync items:", error);
       return [];
     }
   }
@@ -127,21 +131,36 @@ class SyncService {
    */
   async syncAll(): Promise<SyncResult> {
     if (!this.convex) {
-      throw new Error('SyncService not initialized with Convex client');
+      throw new Error("SyncService not initialized with Convex client");
     }
 
     if (!this.isOnline) {
-      console.log('📴 Cannot sync: Device is offline');
-      return { success: false, synced: 0, failed: 0, errors: ['Device is offline'] };
+      console.log("📴 Cannot sync: Device is offline");
+      return {
+        success: false,
+        synced: 0,
+        failed: 0,
+        errors: ["Device is offline"],
+      };
     }
 
     if (this.syncInProgress) {
-      console.log('⏳ Sync already in progress');
-      return { success: false, synced: 0, failed: 0, errors: ['Sync already in progress'] };
+      console.log("⏳ Sync already in progress");
+      return {
+        success: false,
+        synced: 0,
+        failed: 0,
+        errors: ["Sync already in progress"],
+      };
     }
 
     this.syncInProgress = true;
-    const result: SyncResult = { success: true, synced: 0, failed: 0, errors: [] };
+    const result: SyncResult = {
+      success: true,
+      synced: 0,
+      failed: 0,
+      errors: [],
+    };
 
     try {
       const pendingItems = await this.getPendingSyncItems();
@@ -153,24 +172,29 @@ class SyncService {
           await this.removeSyncQueueItem(item.id!);
           result.synced++;
         } catch (error) {
-          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+          const errorMessage =
+            error instanceof Error ? error.message : "Unknown error";
           console.error(`❌ Failed to sync item ${item.id}:`, errorMessage);
-          
+
           await this.updateSyncQueueItemAttempt(item.id!, errorMessage);
           result.failed++;
-          result.errors.push(`${item.table_name}/${item.record_id}: ${errorMessage}`);
+          result.errors.push(
+            `${item.table_name}/${item.record_id}: ${errorMessage}`
+          );
         }
       }
 
       // Update last sync timestamp
       await this.updateLastSyncTimestamp();
-      
-      console.log(`✅ Sync completed: ${result.synced} synced, ${result.failed} failed`);
-      result.success = result.failed === 0;
 
+      console.log(
+        `✅ Sync completed: ${result.synced} synced, ${result.failed} failed`
+      );
+      result.success = result.failed === 0;
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown sync error';
-      console.error('❌ Sync failed:', errorMessage);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown sync error";
+      console.error("❌ Sync failed:", errorMessage);
       result.success = false;
       result.errors.push(errorMessage);
     } finally {
@@ -184,20 +208,20 @@ class SyncService {
    * Auto-sync with throttling
    */
   private async autoSync() {
-    const lastAutoSync = await AsyncStorage.getItem('lastAutoSync');
+    const lastAutoSync = await AsyncStorage.getItem("lastAutoSync");
     const now = Date.now();
-    
+
     // Throttle auto-sync to once every 30 seconds
-    if (lastAutoSync && now - parseInt(lastAutoSync) < 30000) {
+    if (lastAutoSync && now - Number.parseInt(lastAutoSync) < 30_000) {
       return;
     }
-    
-    await AsyncStorage.setItem('lastAutoSync', now.toString());
-    
+
+    await AsyncStorage.setItem("lastAutoSync", now.toString());
+
     try {
       await this.syncAll();
     } catch (error) {
-      console.error('❌ Auto-sync failed:', error);
+      console.error("❌ Auto-sync failed:", error);
     }
   }
 
@@ -206,11 +230,11 @@ class SyncService {
    */
   private async syncSingleItem(item: SyncQueueItem): Promise<void> {
     if (!this.convex) {
-      throw new Error('Convex client not available');
+      throw new Error("Convex client not available");
     }
 
     const data = JSON.parse(item.data);
-    
+
     try {
       switch (item.table_name) {
         case TABLES.TENDERS:
@@ -265,7 +289,10 @@ class SyncService {
     // Example: await this.convex.mutation(api.services.createService, data);
   }
 
-  private async syncOverchargeReport(operation: string, data: any): Promise<void> {
+  private async syncOverchargeReport(
+    operation: string,
+    data: any
+  ): Promise<void> {
     console.log(`Syncing overcharge report ${operation}:`, data.id);
     // Example: await this.convex.mutation(api.services.reportOvercharge, data);
   }
@@ -298,7 +325,10 @@ class SyncService {
     await db.runAsync(`DELETE FROM ${TABLES.SYNC_QUEUE} WHERE id = ?`, [id]);
   }
 
-  private async updateSyncQueueItemAttempt(id: number, errorMessage: string): Promise<void> {
+  private async updateSyncQueueItemAttempt(
+    id: number,
+    errorMessage: string
+  ): Promise<void> {
     const db = getDatabase();
     await db.runAsync(
       `UPDATE ${TABLES.SYNC_QUEUE} SET attempts = attempts + 1, last_attempt = CURRENT_TIMESTAMP, error_message = ? WHERE id = ?`,
@@ -318,7 +348,7 @@ class SyncService {
    */
   async getSyncStatus() {
     const db = getDatabase();
-    
+
     try {
       const pendingCount = await db.getFirstAsync<{ count: number }>(
         `SELECT COUNT(*) as count FROM ${TABLES.SYNC_QUEUE} WHERE attempts < ?`,
@@ -339,10 +369,10 @@ class SyncService {
         syncInProgress: this.syncInProgress,
         pendingItems: pendingCount?.count ?? 0,
         failedItems: failedCount?.count ?? 0,
-        lastSyncTimestamp: lastSync?.last_sync_timestamp,
+        lastSyncTimestamp: lastSync?.last_sync_timestamp ?? null,
       };
     } catch (error) {
-      console.error('❌ Failed to get sync status:', error);
+      console.error("❌ Failed to get sync status:", error);
       return {
         isOnline: this.isOnline,
         syncInProgress: this.syncInProgress,
@@ -358,11 +388,10 @@ class SyncService {
    */
   async clearFailedSyncItems(): Promise<void> {
     const db = getDatabase();
-    await db.runAsync(
-      `DELETE FROM ${TABLES.SYNC_QUEUE} WHERE attempts >= ?`,
-      [this.MAX_RETRY_ATTEMPTS]
-    );
-    console.log('✅ Cleared failed sync items');
+    await db.runAsync(`DELETE FROM ${TABLES.SYNC_QUEUE} WHERE attempts >= ?`, [
+      this.MAX_RETRY_ATTEMPTS,
+    ]);
+    console.log("✅ Cleared failed sync items");
   }
 
   /**
@@ -374,8 +403,8 @@ class SyncService {
       `UPDATE ${TABLES.SYNC_QUEUE} SET attempts = 0, error_message = NULL WHERE attempts >= ?`,
       [this.MAX_RETRY_ATTEMPTS]
     );
-    console.log('✅ Reset failed sync items for retry');
-    
+    console.log("✅ Reset failed sync items for retry");
+
     if (this.isOnline) {
       this.autoSync();
     }

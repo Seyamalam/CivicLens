@@ -1,8 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { initializeDatabase, getDatabase, getDatabaseStats } from './database';
-import { syncService, SyncResult } from './sync-service';
-import { useConvex } from 'convex/react';
-import { Alert } from 'react-native';
+import { useConvex } from "convex/react";
+import type React from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Alert } from "react-native";
+import {
+  getDatabase,
+  getDatabaseStats,
+  initializeDatabase,
+} from "../lib/database";
+import { type SyncResult, syncService } from "../lib/sync-service";
 
 interface DatabaseContextType {
   isInitialized: boolean;
@@ -30,13 +35,16 @@ interface DatabaseProviderProps {
   children: React.ReactNode;
 }
 
-export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) => {
+export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({
+  children,
+}) => {
   const convex = useConvex();
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<Record<string, number> | null>(null);
-  const [syncStatus, setSyncStatus] = useState<DatabaseContextType['syncStatus']>(null);
+  const [syncStatus, setSyncStatus] =
+    useState<DatabaseContextType["syncStatus"]>(null);
 
   useEffect(() => {
     initializeApp();
@@ -48,11 +56,11 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
       setError(null);
 
       // Initialize SQLite database
-      console.log('🗄️ Initializing SQLite database...');
+      console.log("🗄️ Initializing SQLite database...");
       await initializeDatabase();
 
       // Initialize sync service with Convex client
-      console.log('🔄 Initializing sync service...');
+      console.log("🔄 Initializing sync service...");
       await syncService.initialize(convex);
 
       // Load initial data
@@ -60,17 +68,17 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
       await refreshSyncStatus();
 
       setIsInitialized(true);
-      console.log('✅ Database and sync service initialized successfully');
-
+      console.log("✅ Database and sync service initialized successfully");
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Unknown initialization error';
-      console.error('❌ Database initialization failed:', errorMessage);
+      const errorMessage =
+        err instanceof Error ? err.message : "Unknown initialization error";
+      console.error("❌ Database initialization failed:", errorMessage);
       setError(errorMessage);
-      
+
       Alert.alert(
-        'Database Error',
-        'Failed to initialize the local database. Some features may not work properly.',
-        [{ text: 'OK' }]
+        "Database Error",
+        "Failed to initialize the local database. Some features may not work properly.",
+        [{ text: "OK" }]
       );
     } finally {
       setIsLoading(false);
@@ -84,7 +92,7 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
         setStats(dbStats);
       }
     } catch (err) {
-      console.error('❌ Failed to refresh database stats:', err);
+      console.error("❌ Failed to refresh database stats:", err);
     }
   };
 
@@ -93,7 +101,7 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
       const status = await syncService.getSyncStatus();
       setSyncStatus(status);
     } catch (err) {
-      console.error('❌ Failed to refresh sync status:', err);
+      console.error("❌ Failed to refresh sync status:", err);
     }
   };
 
@@ -103,7 +111,7 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
       await refreshSyncStatus();
       return result;
     } catch (err) {
-      console.error('❌ Force sync failed:', err);
+      console.error("❌ Force sync failed:", err);
       throw err;
     }
   };
@@ -113,7 +121,7 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
       await syncService.clearFailedSyncItems();
       await refreshSyncStatus();
     } catch (err) {
-      console.error('❌ Clear failed sync items failed:', err);
+      console.error("❌ Clear failed sync items failed:", err);
       throw err;
     }
   };
@@ -123,7 +131,7 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
       await syncService.retryFailedItems();
       await refreshSyncStatus();
     } catch (err) {
-      console.error('❌ Retry failed sync items failed:', err);
+      console.error("❌ Retry failed sync items failed:", err);
       throw err;
     }
   };
@@ -134,7 +142,7 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
 
     const interval = setInterval(() => {
       refreshSyncStatus();
-    }, 10000); // Refresh every 10 seconds
+    }, 10_000); // Refresh every 10 seconds
 
     return () => clearInterval(interval);
   }, [isInitialized]);
@@ -162,7 +170,7 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) 
 export const useDatabase = (): DatabaseContextType => {
   const context = useContext(DatabaseContext);
   if (!context) {
-    throw new Error('useDatabase must be used within a DatabaseProvider');
+    throw new Error("useDatabase must be used within a DatabaseProvider");
   }
   return context;
 };
@@ -170,18 +178,24 @@ export const useDatabase = (): DatabaseContextType => {
 // Hook for easy database access
 export const useLocalDatabase = () => {
   const { isInitialized } = useDatabase();
-  
+
   if (!isInitialized) {
-    throw new Error('Database not initialized');
+    throw new Error("Database not initialized");
   }
-  
+
   return getDatabase();
 };
 
 // Hook for sync operations
 export const useSync = () => {
-  const { syncStatus, forcSync, clearFailedSync, retryFailedSync, refreshSyncStatus } = useDatabase();
-  
+  const {
+    syncStatus,
+    forcSync,
+    clearFailedSync,
+    retryFailedSync,
+    refreshSyncStatus,
+  } = useDatabase();
+
   return {
     syncStatus,
     sync: forcSync,
